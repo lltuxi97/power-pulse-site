@@ -55,7 +55,7 @@
             border-radius: 50px; margin-top: 20px; transition: all 0.3s ease; border: none; cursor: pointer;
             display: inline-flex; align-items: center; gap: 10px; font-size: 1.2rem; box-shadow: 0 5px 15px rgba(227, 27, 35, 0.4);
         }
-        .btn:hover { background-color: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(227, 27, 35, 0.6); }
+        .btn:hover { background-color: var(--primary-dark); transform: translateY(-3px); box-shadow: 8px 20px rgba(227, 27, 35, 0.6); }
         .hero-btn { animation: pulse-animation 2s infinite; }
 
         @keyframes pulse-animation { 0% { box-shadow: 0 0 0 0 rgba(255, 34, 44, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(255, 34, 44, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 34, 44, 0); } }
@@ -122,7 +122,7 @@
         .icon-brown { background-color: #d35400; color: #fff; }
 
         .bento-card h3 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; } .bento-card p { font-size: 1.1rem; opacity: 0.85; max-width: 90%; }
-        .discover-btn { display: inline-flex; align-items: center; gap: 10px; color: #52e033; text-decoration: none; font-weight: bold; margin-top: 25px; font-size: 1.1rem; transition: 0.3s; }
+        .discover-btn { display: inline-flex; align-items: center; gap: 10px; color: #52e033; text-decoration: none; font-weight: bold; margin-top: 25px; font-size: 1.1rem; transition: 0.3s; cursor: pointer; }
         .discover-btn:hover { gap: 15px; }
         .badge { position: absolute; top: 25px; left: 25px; background-color: #f6c300; color: black; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.9rem; z-index: 2; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         
@@ -131,7 +131,12 @@
         .pool-bg { background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=80'); }
         .football-bg { background-image: url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=600&q=80'); }
         .self-defense-bg { background-image: url('https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&q=80'); }
-        .personal-trainer-bg { background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80'); }
+        
+        /* =========================================
+           تم تعديل الصورة هنا: صورة واضحة لمدرب رجل يساعد متدرب رجل
+           ========================================= */
+        .personal-trainer-bg { background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80'); }
+        
         .coffee-bg { background-image: url('https://images.unsplash.com/photo-1542729716-86ee2eb89512?w=800&q=80'); }
         .massage-bg { background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80'); }
 
@@ -201,11 +206,66 @@
         .contact-row { display: flex; align-items: center; margin-bottom: 20px; }
         .contact-icon { width: 45px; height: 45px; background-color: var(--primary-color); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; border-radius: 8px; margin-left: 15px; flex-shrink: 0; }
         .contact-info strong { display: block; color: #fff; margin-bottom: 5px; }
+        
+        .location-link { text-decoration: none; color: inherit; transition: 0.3s; display: block; }
+        .location-link:hover { transform: translateX(-5px); }
+        .location-link:hover .contact-icon { background-color: #fff; color: var(--primary-color); }
+
         .footer-bottom { background-color: #000; padding: 20px; border-top: 1px solid #222; }
         .bottom-content { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         .bottom-links a { color: #777; text-decoration: none; margin-left: 20px; font-size: 13px; } .bottom-links a:hover { color: #fff; }
         .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* =========================================
+           10. تنسيقات النافذة المنبثقة (MODAL)
+           ========================================= */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(5px);
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto; 
+            padding: 30px; 
+            border: 1px solid var(--primary-color); 
+            width: 100%; 
+            max-width: 700px; 
+            border-radius: 20px; 
+            position: relative; 
+            box-shadow: 0 0 30px rgba(255, 34, 44, 0.3);
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+
+        .close-modal {
+            color: #aaa; float: left; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .close-modal:hover { color: var(--primary-color); }
+
+        .modal-header h2 { margin-bottom: 20px; font-size: 1.8rem; border-bottom: 2px solid #333; padding-bottom: 15px; }
+        .modal-body .intro-text { color: #ddd; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+        .modal-divider { border: 0; border-top: 1px solid #333; margin: 20px 0; }
+        .modal-body h3 { margin-bottom: 20px; color: #fff; }
+
+        .trainers-list { display: grid; gap: 20px; }
+        .trainer-item { display: flex; align-items: center; background: #222; padding: 15px; border-radius: 10px; border-right: 4px solid var(--primary-color); }
+        .trainer-icon { font-size: 2rem; color: var(--primary-color); margin-left: 15px; width: 50px; text-align: center; }
+        .trainer-item h4 { color: #fff; margin-bottom: 5px; }
+        .trainer-item p { color: #bbb; font-size: 0.9rem; margin: 0; }
+
+        .modal-cta { width: 100%; text-align: center; margin-top: 25px; display: block; }
 
         @media (max-width: 992px) { 
             .services-bento-grid { 
@@ -299,7 +359,7 @@
                     <div class="card-icon-box icon-green"><i class="fas fa-dumbbell"></i></div>
                     <h3>كمال الأجسام وبناء القوة</h3>
                     <p>أحدث الأجهزة والمعدات العالمية لبناء العضلات وتحسين القوة.</p>
-                    <a href="#contact" class="discover-btn">اكتشف المزيد <i class="fas fa-arrow-left"></i></a>
+                    <a href="javascript:void(0)" id="open-bodybuilding-modal" class="discover-btn">اكتشف المزيد <i class="fas fa-arrow-left"></i></a>
                 </div>
             </div>
 
@@ -491,18 +551,62 @@
             </div>
             <div class="footer-col">
                 <h3>تواصل معنا</h3>
-                <div class="contact-row"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-info"><strong>الموقع</strong><span>طريق الملك عبدالعزيز، البدائع 56329</span></div></div>
+                <a href="https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B1%D9%83%D8%B2+%D9%86%D8%A8%D8%B6+%D8%A7%D9%84%D9%82%D9%88%D8%A9+%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A" target="_blank" class="location-link">
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-info"><strong>الموقع</strong><span>طريق الملك عبدالعزيز، البدائع 56329</span></div>
+                    </div>
+                </a>
+                
                 <div class="contact-row"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-info"><strong>الهاتف</strong><span>+966 53 202 9900</span></div></div>
                 <div class="contact-row"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-info"><strong>البريد الإلكتروني</strong><span>info@powerpulse.sa</span></div></div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="bottom-content">
-                <p>&copy; 2025 نبض القوة (Power Pulse). جميع الحقوق محفوظة.</p>
+                <p>© 2025 نبض القوة (Power Pulse). جميع الحقوق محفوظة.</p>
                 <div class="bottom-links"><a href="#">الشروط والأحكام</a><a href="#">سياسة الخصوصية</a></div>
             </div>
         </div>
     </footer>
+
+    <div id="modal-bodybuilding" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-dumbbell" style="color:var(--primary-color)"></i> صالة الحديد وكمال الأجسام</h2>
+            </div>
+            <div class="modal-body">
+                <p class="intro-text">
+                    في نادي <strong>POWER PULSE</strong>، نؤمن بأن القوة لا تأتي بالصدفة. لقد قمنا بتجهيز الصالة بأحدث المعدات الميكانيكية والأوزان الحرة (Free Weights) التي تستهدف كافة عضلات الجسم بدقة عالية، مما يضمن لك تجربة تدريبية آمنة وفعالة سواء كنت مبتدئاً أو محترفاً.
+                </p>
+                
+                <hr class="modal-divider">
+
+                <h3><i class="fas fa-user-friends"></i> مدربي القسم</h3>
+                <div class="trainers-list">
+                    <div class="trainer-item">
+                        <div class="trainer-icon"><i class="fas fa-user-ninja"></i></div>
+                        <div>
+                            <h4>كابتن بهاء الدين</h4>
+                            <p>خبير التشريح العضلي وبناء الأجسام، سيضع لك خطة تضمن التضخيم أو التنشيف حسب هدفك.</p>
+                        </div>
+                    </div>
+                    <div class="trainer-item">
+                        <div class="trainer-icon"><i class="fas fa-user-astronaut"></i></div>
+                        <div>
+                            <h4>كابتن نور الدين</h4>
+                            <p>المختص في التوجيه الحركي وتصحيح التكنيك داخل الصالة لضمان سلامتك ورفع أدائك.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/966532029900" target="_blank" class="btn modal-cta">
+                    <i class="fab fa-whatsapp"></i> احجز استشارتك المجانية الآن
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // سكربت المراجعات
@@ -548,6 +652,30 @@
                 item.classList.toggle('active');
             });
         });
+
+        // =========================================
+        // سكربت النافذة المنبثقة (MODAL)
+        // =========================================
+        const modal = document.getElementById("modal-bodybuilding");
+        const btn = document.getElementById("open-bodybuilding-modal");
+        const span = document.getElementsByClassName("close-modal")[0];
+
+        // عند الضغط على زر اكتشف المزيد
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // عند الضغط على علامة الإغلاق (X)
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // عند الضغط في أي مكان خارج النافذة لإغلاقها
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
